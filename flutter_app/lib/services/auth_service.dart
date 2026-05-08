@@ -25,6 +25,11 @@ class AuthService {
     return token != null && token.isNotEmpty;
   }
 
+  static Future<bool> isAdmin() async {
+    final user = await getUser();
+    return user?.isAdmin ?? false;
+  }
+
   static Future<void> clearSession() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_tokenKey);

@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 const signToken = (user) =>
-  jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '7d' });
+  jwt.sign({ id: user._id, email: user.email, role: user.role }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
 router.post('/register', async (req, res) => {
   try {
@@ -26,6 +26,7 @@ router.post('/register', async (req, res) => {
         totalBookings: user.totalBookings,
         totalSpent: user.totalSpent,
         activePenalties: user.activePenalties,
+        role: user.role,
       },
     });
   } catch (err) {
@@ -56,6 +57,7 @@ router.post('/login', async (req, res) => {
         totalBookings: user.totalBookings,
         totalSpent: user.totalSpent,
         activePenalties: user.activePenalties,
+        role: user.role,
       },
     });
   } catch (err) {

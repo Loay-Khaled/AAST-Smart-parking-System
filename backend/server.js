@@ -15,6 +15,23 @@ app.use('/api/bookings', require('./routes/bookings'));
 app.use('/api/notifications', require('./routes/notifications'));
 app.use('/api/waitinglist', require('./routes/waitinglist'));
 app.use('/api/profile', require('./routes/profile'));
+app.use('/api/admin', require('./routes/admin'));
+
+async function seedAdmin() {
+  const User = require('./models/User');
+  const existing = await User.findOne({ role: 'admin' });
+  if (existing) {
+    console.log('Admin user already exists');
+    return;
+  }
+  await User.create({
+    name: 'Admin',
+    email: 'admin@aast.edu',
+    password: 'Admin123456@',
+    role: 'admin',
+  });
+  console.log('Admin user seeded: admin@aast.edu / Admin123456@');
+}
 
 async function seedSpots() {
   const ParkingSpot = require('./models/ParkingSpot');
@@ -42,6 +59,7 @@ mongoose
   .then(async () => {
     console.log('Connected to MongoDB Atlas');
     await seedSpots();
+    await seedAdmin();
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   })

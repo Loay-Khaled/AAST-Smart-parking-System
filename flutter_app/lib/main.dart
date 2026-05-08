@@ -12,6 +12,12 @@ import 'screens/bookings_screen.dart';
 import 'screens/waiting_list_screen.dart';
 import 'screens/notifications_screen.dart';
 import 'screens/profile_screen.dart';
+import 'screens/admin_home_screen.dart';
+import 'screens/admin_users_screen.dart';
+import 'screens/admin_spots_screen.dart';
+import 'screens/admin_bookings_screen.dart';
+import 'screens/admin_notifications_screen.dart';
+import 'screens/admin_waiting_list_screen.dart';
 import 'models/booking.dart';
 
 void main() {
@@ -38,6 +44,13 @@ class AastParkingApp extends StatelessWidget {
         '/profile': (_) => const ProfileScreen(),
         '/waiting-list': (_) => const WaitingListScreen(),
         '/notifications': (_) => const NotificationsScreen(),
+        // Admin routes
+        '/admin-home': (_) => const AdminHomeScreen(),
+        '/admin-users': (_) => const AdminUsersScreen(),
+        '/admin-spots': (_) => const AdminSpotsScreen(),
+        '/admin-bookings': (_) => const AdminBookingsScreen(),
+        '/admin-notifications': (_) => const AdminNotificationsScreen(),
+        '/admin-waiting-list': (_) => const AdminWaitingListScreen(),
       },
       onGenerateRoute: (settings) {
         switch (settings.name) {

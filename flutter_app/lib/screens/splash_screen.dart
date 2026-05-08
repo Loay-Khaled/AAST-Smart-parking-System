@@ -29,7 +29,13 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       if (!mounted) return;
       final loggedIn = await AuthService.isLoggedIn();
       if (!mounted) return;
-      Navigator.pushReplacementNamed(context, loggedIn ? '/home' : '/login');
+      if (!loggedIn) {
+        Navigator.pushReplacementNamed(context, '/login');
+        return;
+      }
+      final admin = await AuthService.isAdmin();
+      if (!mounted) return;
+      Navigator.pushReplacementNamed(context, admin ? '/admin-home' : '/home');
     });
   }
 

@@ -6,6 +6,7 @@ class User {
   final int totalBookings;
   final double totalSpent;
   final int activePenalties;
+  final String role;
 
   User({
     required this.id,
@@ -15,7 +16,10 @@ class User {
     required this.totalBookings,
     required this.totalSpent,
     required this.activePenalties,
+    this.role = 'user',
   });
+
+  bool get isAdmin => role == 'admin';
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json['id'] ?? json['_id'] ?? '',
@@ -25,6 +29,7 @@ class User {
         totalBookings: (json['totalBookings'] ?? 0).toInt(),
         totalSpent: (json['totalSpent'] ?? 0).toDouble(),
         activePenalties: (json['activePenalties'] ?? 0).toInt(),
+        role: json['role'] ?? 'user',
       );
 
   Map<String, dynamic> toJson() => {
@@ -35,5 +40,6 @@ class User {
         'totalBookings': totalBookings,
         'totalSpent': totalSpent,
         'activePenalties': activePenalties,
+        'role': role,
       };
 }

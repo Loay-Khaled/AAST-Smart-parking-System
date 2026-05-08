@@ -15,4 +15,15 @@ class ApiConstants {
   static const String joinQueue = '$baseUrl/waitinglist/join';
   static const String leaveQueue = '$baseUrl/waitinglist/leave';
   static const String profile = '$baseUrl/profile';
+
+  // Admin endpoints
+  static const String adminStats = '$baseUrl/admin/stats';
+  static const String adminUsers = '$baseUrl/admin/users';
+  static String adminUserById(String id) => '$baseUrl/admin/users/$id';
+  static const String adminBookings = '$baseUrl/admin/bookings';
+  static String adminBookingCancel(String id) => '$baseUrl/admin/bookings/$id/cancel';
+  static String adminSpotUpdate(String spotId) => '$baseUrl/admin/spots/$spotId';
+  static const String adminNotifications = '$baseUrl/admin/notifications';
+  static const String adminWaitingList = '$baseUrl/admin/waitinglist';
+  static String adminWaitingListEntry(String id) => '$baseUrl/admin/waitinglist/$id';
 }

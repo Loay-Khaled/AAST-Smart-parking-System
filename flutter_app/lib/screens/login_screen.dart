@@ -33,7 +33,9 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() => _loading = false);
 
     if (result['success']) {
-      Navigator.pushReplacementNamed(context, '/home');
+      final user = result['user'];
+      final route = (user != null && user.isAdmin) ? '/admin-home' : '/home';
+      Navigator.pushReplacementNamed(context, route);
     } else {
       setState(() => _error = result['message']);
     }
